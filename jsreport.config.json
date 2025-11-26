@@ -1,0 +1,52 @@
+{
+  "httpPort": 8081,
+  "store": {
+		"provider": "postgres"
+	},
+  "blobStorage": {
+    "provider": "postgres"
+  },
+  "logger": {
+    "console": {
+      "transport": "console",
+      "level": "debug"
+    },
+    "file": {
+      "transport": "file",
+      "level": "info",
+      "filename": "logs/reporter.log"
+    },
+    "error": {
+      "transport": "file",
+      "level": "error",
+      "filename": "logs/error.log"
+    }
+  },
+  "trustUserCode": true,
+  "reportTimeout": 60000,
+  "workers": {
+    "numberOfWorkers": 2
+  },
+  "extensions": {
+    "postgres-store": {
+			"host": "localhost",
+			"port": 5429,
+			"database": "zapp",
+			"user": "postgres",
+			"password": "postgres"
+		},
+    "authentication": {
+      "cookieSession": {
+        "secret": "OaNYeqThHJAd2s4A"
+      },
+      "admin": {
+        "username": "dev",
+        "password": "devpass"
+      },
+      "enabled": true
+    },
+    "sample-template": {
+      "createSamples": true
+    }
+  }
+}
