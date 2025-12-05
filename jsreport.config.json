@@ -1,5 +1,4 @@
 {
-  "httpPort": 8081,
   "store": {
 		"provider": "postgres"
 	},
@@ -30,7 +29,7 @@
   "extensions": {
     "postgres-store": {
 			"host": "localhost",
-			"port": 5429,
+			"port": 5432,
 			"database": "zapp",
 			"user": "postgres",
 			"password": "postgres"
