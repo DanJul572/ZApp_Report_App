@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@jsreport/jsreport-postgres-store": "^4.3.0",
-    "axios": "^1.13.2",
     "jsreport": "^4.11.0"
   }
 }
