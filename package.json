@@ -9,7 +9,7 @@
     "entryPoint": "server.js"
   },
   "dependencies": {
-    "@jsreport/jsreport-postgres-store": "^4.3.0",
-    "jsreport": "^4.11.0"
+    "@jsreport/jsreport-postgres-store": "^4.3.1",
+    "jsreport": "^4.12.0"
   }
 }
