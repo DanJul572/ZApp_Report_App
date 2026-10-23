@@ -10,8 +10,8 @@ A Node.js server application using [jsreport](https://jsreport.net/) for generat
 
 ## Prerequisites
 
-- Node.js (v16+ recommended)
-- [pnpm](https://pnpm.io/) package manager
+- Node.js 22 (see `.nvmrc`)
+- npm (this app uses npm, not pnpm)
 - PostgreSQL database
 
 ## Installation
@@ -24,19 +24,35 @@ A Node.js server application using [jsreport](https://jsreport.net/) for generat
 
 2. Install dependencies:
    ```sh
-   pnpm install
+   npm install
    ```
 
 ## Configuration
 
-Configure your PostgreSQL connection in `jsreport.config.json` or via environment variables as per [jsreport-postgres-store documentation](https://jsreport.net/learn/postgres-store).
+`jsreport.config.json` holds the base configuration. The port, database and admin login can be
+set per environment in env files (see `.env.example`), and those values win over
+`jsreport.config.json`. A variable left empty keeps the value of `jsreport.config.json`.
+
+`NODE_ENV` picks the env files. They are read in this order, and the first file that sets a
+variable wins; variables already set in the shell are never overwritten:
+
+1. `.env.<NODE_ENV>.local`
+2. `.env.local`
+3. `.env.<NODE_ENV>`
+4. `.env`
+
+```sh
+cp .env.example .env.development   # then fill it in
+```
 
 ## Usage
 
 ### Start the server
 
 ```sh
-pnpm start
+npm run start:dev     # NODE_ENV=development
+npm run start:stage   # NODE_ENV=stage
+npm run start:prod    # NODE_ENV=production
 ```
 
 The server will initialize jsreport and connect to PostgreSQL.
@@ -44,17 +60,20 @@ The server will initialize jsreport and connect to PostgreSQL.
 ### Use jsreport CLI
 
 ```sh
-pnpm jsreport
+npm run jsreport
 ```
 
 ## Scripts
 
-- `start`: Starts the jsreport server (`server.js`)
+- `start`: Starts the jsreport server (`server.js`); NODE_ENV defaults to development
+- `start:dev`, `start:stage`, `start:prod`: Start the server with that NODE_ENV
 - `jsreport`: Runs jsreport CLI
 
 ## Project Structure
 
 - `server.js`: Main server entry point
+- `loadEnv.js`: Loads the env files and turns them into jsreport options
+- `jsreport.config.json`: Base jsreport configuration
 - `package.json`: Project metadata and scripts
 
 ## Shutting Down

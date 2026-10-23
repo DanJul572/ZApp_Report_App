@@ -1,4 +1,5 @@
-const jsreport = require("jsreport")();
+const options = require("./loadEnv");
+const jsreport = require("jsreport")(options);
 
 if (process.env.JSREPORT_CLI) {
     // export jsreport instance to make it possible to use jsreport-cli
